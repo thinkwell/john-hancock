@@ -9,5 +9,7 @@ module JohnHancock
   Signature.autoload :OAuth,     'john-hancock/signature/oauth'
   Signature.autoload :EC2,       'john-hancock/signature/ec2'
 
-  RequestProxy.autoload :Base,   'john-hancock/request_proxy/base'
+  RequestProxy.autoload :Base,          'john-hancock/request_proxy/base'
+  RequestProxy.autoload :Headers,       'john-hancock/request_proxy/headers'
+  RequestProxy.autoload :RackRequest,   'john-hancock/request_proxy/rack_request'
 end
