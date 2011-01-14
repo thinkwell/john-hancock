@@ -12,4 +12,5 @@ module JohnHancock
   RequestProxy.autoload :Base,          'john-hancock/request_proxy/base'
   RequestProxy.autoload :Headers,       'john-hancock/request_proxy/headers'
   RequestProxy.autoload :RackRequest,   'john-hancock/request_proxy/rack_request'
+  RequestProxy.autoload :URI,           'john-hancock/request_proxy/uri'
 end
