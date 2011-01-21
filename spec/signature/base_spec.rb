@@ -7,6 +7,13 @@ module JohnHancock
       it "only accepts request proxies" do
         expect { Signature::Base.new(Mock::Request.new) }.to raise_error(TypeError)
       end
+
+      it "doesn't modify options" do
+        options = {:valid_timestamp_range => 300}
+        o = options.dup
+        Signature::Base.new(RequestProxy::MockRequest.new(Mock::Request.new), options)
+        options.should == o
+      end
     end
 
 

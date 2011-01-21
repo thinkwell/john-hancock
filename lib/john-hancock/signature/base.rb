@@ -8,8 +8,8 @@ module JohnHancock::Signature
     def initialize(request, options={}, &block)
       raise TypeError, "Request must be a JohnHancock::RequestProxy" unless request.kind_of?(JohnHancock::RequestProxy::Base)
       @request = request
-      @valid_timestamp_range = options.delete(:valid_timestamp_range) || ((Time.now.to_i-300)..(Time.now.to_i+300))
-      @secret = options.delete(:secret)
+      @valid_timestamp_range = options[:valid_timestamp_range] || ((Time.now.to_i-300)..(Time.now.to_i+300))
+      @secret = options[:secret]
       @options = options
     end
 

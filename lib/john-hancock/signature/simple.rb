@@ -38,9 +38,9 @@ module JohnHancock::Signature
     attr_accessor :key_header, :timestamp_header, :signature_header
 
     def initialize(request, options={}, &block)
-      @key_header = options.delete(:key_header) || 'X-Api-Key'
-      @timestamp_header = options.delete(:timestamp_header) || 'X-Api-Timestamp'
-      @signature_header = options.delete(:signature_header) || 'X-Api-Signature'
+      @key_header = options[:key_header] || 'X-Api-Key'
+      @timestamp_header = options[:timestamp_header] || 'X-Api-Timestamp'
+      @signature_header = options[:signature_header] || 'X-Api-Signature'
       super(request, options, &block)
     end
 

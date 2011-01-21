@@ -19,6 +19,13 @@ module JohnHancock
     end
 
 
+    it "doesn't modify options" do
+        options = {:signature_header => 'foo-bar'}
+        o = options.dup
+        Signature.build(:simple, @request, options)
+        options.should == o
+    end
+
     it "sets the default header names" do
       @signature.key_header.should == 'X-Api-Key'
       @signature.timestamp_header.should == 'X-Api-Timestamp'
