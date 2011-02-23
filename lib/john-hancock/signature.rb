@@ -26,8 +26,8 @@ module JohnHancock
       klass.new(request, options, &block)
     end
 
-    def self.sign(algorithm, request, options = {}, &block)
-      self.build(algorithm, request, options, &block).signature
+    def self.sign!(algorithm, request, options = {}, &block)
+      self.build(algorithm, request, options, &block).sign!
     end
 
     def self.verify(algorithm, request, options = {}, &block)
