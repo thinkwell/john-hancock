@@ -45,8 +45,8 @@ module JohnHancock::Signature
 
 
     def sign!
-      # TODO
-      raise NotImplementedError, "Coming soon!"
+      self.timestamp = Time.now.to_i if timestamp.nil?
+      self.request_signature = signature
     end
 
 
@@ -56,8 +56,7 @@ module JohnHancock::Signature
 
 
     def timestamp=(ts)
-      # TODO!
-      raise NotImplementedError, "Coming soon!"
+      request.query_parameters['timestamp'] = ts
     end
 
 
@@ -67,6 +66,11 @@ module JohnHancock::Signature
     # nil if no signature exists.
     def request_signature
       request.parameters['signature']
+    end
+
+
+    def request_signature=(signature)
+      request.query_parameters['signature'] = signature
     end
 
 

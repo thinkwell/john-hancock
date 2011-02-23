@@ -56,14 +56,19 @@ module JohnHancock::Signature
       Digest::MD5.hexdigest(signature_base_string)
     end
 
+
     def id_hash
       {:id => key}
     end
 
 
-
     def key
       request.headers[key_header]
+    end
+
+
+    def key=(key)
+      request.set_header(key_header, key)
     end
 
 
@@ -72,8 +77,18 @@ module JohnHancock::Signature
     end
 
 
+    def timestamp=(ts)
+      request.set_header(timestamp_header, ts)
+    end
+
+
     def request_signature
       request.headers[signature_header]
+    end
+
+
+    def request_signature=(signature)
+      request.set_header(signature_header, signature)
     end
 
 

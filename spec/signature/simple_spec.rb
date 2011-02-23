@@ -90,5 +90,21 @@ module JohnHancock
       @signature.should_not be_valid_signature
     end
 
+    it "sets the key" do
+      @signature.key = 'foobar'
+      @signature.key.should == 'foobar'
+    end
+
+    it "sets the timestamp" do
+      t = Time.now.to_i + 23
+      @signature.timestamp = t
+      @signature.timestamp.should == t
+    end
+
+    it "sets the request signature" do
+      @signature.request_signature = 'foobar'
+      @signature.request_signature.should == 'foobar'
+    end
+
   end
 end
