@@ -88,27 +88,32 @@ module JohnHancock::Signature
 
   private
 
+    def reserved_characters
+      URI::REGEXP::PATTERN::RESERVED
+    end
+
+
     # http://tools.ietf.org/html/rfc5849#section-3.6
     def unreserved_characters
       "-a-zA-Z0-9._~"
     end
 
 
-    def uri_parser
-      URI::Parser.new(:UNRESERVED => unreserved_characters, :RESERVED => "")
+    def unsafe_regex
+      Regexp.new("[^#{unreserved_characters}#{reserved_characters}]", false, 'N').freeze
     end
 
 
     # Escape +value+ by URL encoding all non-reserved character.
     def escape(value)
-      uri_parser.escape(value.to_s)
+      URI.escape(value.to_s, unsafe_regex)
     rescue ArgumentError
-      uri_parser.escape(value.to_s.force_encoding(Encoding::UTF_8))
+      URI.escape(value.to_s.force_encoding(Encoding::UTF_8))
     end
 
 
     def unescape(value)
-      uri_parser.unescape(value.gsub('+', '%2B'))
+      URI.unescape(value.gsub('+', '%2B'))
     end
 
   end
