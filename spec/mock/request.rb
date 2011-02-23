@@ -43,5 +43,8 @@ module Mock
 
   end
 
+  class ChildRequest < Request
+  end
+
 end
 end
