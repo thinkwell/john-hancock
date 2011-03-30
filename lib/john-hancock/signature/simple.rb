@@ -35,11 +35,12 @@ module JohnHancock::Signature
   #
   class Simple < JohnHancock::Signature::Base
 
-    attr_accessor :key_header, :timestamp_header, :signature_header
+    attr_accessor :key_header, :key_field, :timestamp_header, :signature_header
 
     def initialize(request, options={}, &block)
       options = {
         'key_header' => 'X-Api-Key',
+        'key_field' => :id,
         'timestamp_header' => 'X-Api-Timestamp',
         'signature_header' => 'X-Api-Signature',
       }.merge(options)
@@ -58,7 +59,7 @@ module JohnHancock::Signature
 
 
     def id_hash
-      {:id => key}
+      {key_field => key}
     end
 
 

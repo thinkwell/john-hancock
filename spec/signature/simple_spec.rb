@@ -32,6 +32,9 @@ module JohnHancock
       @signature.signature_header.should == 'X-Api-Signature'
     end
 
+    it "sets the default field names" do
+      @signature.key_field.should == :id
+    end
 
     it "allows changing the header names" do
       @signature.key_header = 'Api-Id'
@@ -42,6 +45,11 @@ module JohnHancock
 
       @signature.signature_header = 'Api-Sig'
       @signature.signature_header.should == 'Api-Sig'
+    end
+
+    it "allows changing the field names" do
+      @signature.key_field = :_id
+      @signature.key_field.should == :_id
     end
 
     it "allows changing the header names via options" do
@@ -106,5 +114,10 @@ module JohnHancock
       @signature.request_signature.should == 'foobar'
     end
 
+    it "sets the correct id_hash parameters" do
+      @signature.id_hash.should == {:id => '1234567890'}
+      @signature.key_field = :_id
+      @signature.id_hash.should == {:_id => '1234567890'}
+    end
   end
 end
