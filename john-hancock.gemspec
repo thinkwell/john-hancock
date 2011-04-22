@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{john-hancock}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Turner"]
-  s.date = %q{2011-03-30}
+  s.date = %q{2011-04-22}
   s.description = %q{Extendable library for signing and verifying url/request signatures}
   s.email = %q{bturner@bltweb.net}
   s.extra_rdoc_files = [
