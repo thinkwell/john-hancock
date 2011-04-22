@@ -3,7 +3,7 @@ require 'uri'
 module JohnHancock::Signature
   class Base
 
-    attr_accessor :options, :request, :valid_timestamp_range, :secret
+    attr_accessor :options, :request, :valid_timestamp_range
 
     def initialize(request, options={}, &block)
       raise TypeError, "Request must be a JohnHancock::RequestProxy" unless request.kind_of?(JohnHancock::RequestProxy::Base)

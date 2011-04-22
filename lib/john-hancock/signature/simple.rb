@@ -35,7 +35,7 @@ module JohnHancock::Signature
   #
   class Simple < JohnHancock::Signature::Base
 
-    attr_accessor :key_header, :key_field, :timestamp_header, :signature_header
+    attr_accessor :key_header, :key_field, :timestamp_header, :signature_header, :secret
 
     def initialize(request, options={}, &block)
       options = {
