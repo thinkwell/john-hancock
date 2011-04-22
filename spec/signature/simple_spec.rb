@@ -98,6 +98,18 @@ module JohnHancock
       @signature.should_not be_valid_signature
     end
 
+    it "does not validate when secret is blank" do
+      @request.options[:headers]['X-Api-Signature'] = 'a4c925a22e265eaa418d409f84be3c6a'
+      @signature.secret = nil
+      @signature.should_not be_valid_signature
+    end
+
+    it "does not validate when key is blank" do
+      @request.options[:headers]['X-Api-Signature'] = '7cda71f498f19c96f24a2381d5123a1d'
+      @signature.key = nil
+      @signature.should_not be_valid_signature
+    end
+
     it "sets the key" do
       @signature.key = 'foobar'
       @signature.key.should == 'foobar'

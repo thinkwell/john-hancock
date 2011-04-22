@@ -93,6 +93,11 @@ module JohnHancock::Signature
     end
 
 
+    def valid_signature?
+      key.to_s != "" && secret.to_s != "" && super
+    end
+
+
   private
 
     def path
