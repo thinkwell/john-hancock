@@ -61,7 +61,7 @@ module JohnHancock::RequestProxy
 
 
     def set_header(key, val)
-      headers[key] = val
+      headers[key] = val.to_s
     end
 
     #

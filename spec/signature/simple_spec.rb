@@ -118,7 +118,7 @@ module JohnHancock
     it "sets the timestamp" do
       t = Time.now.to_i + 23
       @signature.timestamp = t
-      @signature.timestamp.should == t
+      @signature.timestamp.should == t.to_s
     end
 
     it "sets the request signature" do
