@@ -17,6 +17,8 @@ module JohnHancock::Signature
         self.respond_to?("#{key}=") ? self.send("#{key}=", val) : otherOptions[key] = val
         otherOptions
       end
+
+      read_request_attributes
     end
 
 
@@ -33,10 +35,18 @@ module JohnHancock::Signature
       raise NotImplementedError, "Must be implemented by subclasses"
     end
 
+    # Subclasses MAY override
+
     def id_hash
       h = {}
       h[:id] = request.parameters[:id] if request.parameters.include?(:id)
       h
+    end
+
+    def write_request_attributes
+    end
+
+    def read_request_attributes
     end
 
     #
@@ -47,6 +57,7 @@ module JohnHancock::Signature
     def sign!
       self.timestamp = Time.now.to_i if timestamp.nil?
       self.request_signature = signature
+      write_request_attributes
     end
 
 

@@ -38,6 +38,9 @@ module JohnHancock::Signature
     attr_accessor :key_header, :key_field, :timestamp_header, :signature_header, :secret
 
     def initialize(request, options={}, &block)
+      @headers = {}
+      # Stringify keys
+      options = options.inject({}){|o,(k,v)| o[k.to_s] = v; o}
       options = {
         'key_header' => 'X-Api-Key',
         'key_field' => :id,
@@ -63,33 +66,47 @@ module JohnHancock::Signature
     end
 
 
+    def write_request_attributes
+      request.set_header key_header, key
+      request.set_header timestamp_header, timestamp
+      request.set_header signature_header, request_signature
+    end
+
+
+    def read_request_attributes
+      self.key = request.headers[key_header]
+      self.timestamp = request.headers[timestamp_header]
+      self.request_signature = request.headers[signature_header]
+    end
+
+
     def key
-      request.headers[key_header]
+      @headers[:key]
     end
 
 
     def key=(key)
-      request.set_header(key_header, key)
+      @headers[:key] = key
     end
 
 
     def timestamp
-      request.headers[timestamp_header]
+      @headers[:timestamp]
     end
 
 
     def timestamp=(ts)
-      request.set_header(timestamp_header, ts)
+      @headers[:timestamp] = ts
     end
 
 
     def request_signature
-      request.headers[signature_header]
+      @headers[:signature]
     end
 
 
     def request_signature=(signature)
-      request.set_header(signature_header, signature)
+      @headers[:signature] = signature
     end
 
 

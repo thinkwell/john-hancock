@@ -47,6 +47,12 @@ module JohnHancock
       @signature.signature_header.should == 'Api-Sig'
     end
 
+    it "allows setting header values before header names" do
+      @signature.key = '12345'
+      @signature.key_header = 'X-Test-Api-Key'
+      @signature.key.should == '12345'
+    end
+
     it "allows changing the field names" do
       @signature.key_field = :_id
       @signature.key_field.should == :_id
@@ -93,8 +99,9 @@ module JohnHancock
       @signature.should be_valid_signature
     end
 
-    it "invalidates an existing incorrect signature" do
-      @request.options[:headers]['X-Api-Signature'] = nil
+    it "invalidates an existing signature" do
+      @signature.should be_valid_signature
+      @signature.request_signature = nil
       @signature.should_not be_valid_signature
     end
 
@@ -118,7 +125,7 @@ module JohnHancock
     it "sets the timestamp" do
       t = Time.now.to_i + 23
       @signature.timestamp = t
-      @signature.timestamp.should == t.to_s
+      @signature.timestamp.to_s.should == t.to_s
     end
 
     it "sets the request signature" do
@@ -130,6 +137,12 @@ module JohnHancock
       @signature.id_hash.should == {:id => '1234567890'}
       @signature.key_field = :_id
       @signature.id_hash.should == {:_id => '1234567890'}
+    end
+
+    it "sets the request headers when signing" do
+      @signature.secret = 'new-secret'
+      @signature.sign!
+      @request.headers['X-Api-Signature'].should == @signature.request_signature
     end
   end
 end
