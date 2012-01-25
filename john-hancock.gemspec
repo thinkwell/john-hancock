@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{john-hancock}
-  s.version = "0.0.4"
+  s.name = "john-hancock"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Brandon Turner}]
-  s.date = %q{2011-08-31}
-  s.description = %q{Extendable library for signing and verifying url/request signatures}
-  s.email = %q{bturner@bltweb.net}
+  s.authors = ["Brandon Turner"]
+  s.date = "2012-01-25"
+  s.description = "Extendable library for signing and verifying url/request signatures"
+  s.email = "bturner@bltweb.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.markdown"
@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.markdown",
     "Rakefile",
@@ -52,25 +51,11 @@ Gem::Specification.new do |s|
     "spec/signature_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/thinkwell/john-hancock}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{Library for signing and verifying url signatures}
-  s.test_files = [
-    "spec/mock/request.rb",
-    "spec/mock/request_proxy/mock_request.rb",
-    "spec/mock/signature/mock_signature.rb",
-    "spec/request_proxy/base_spec.rb",
-    "spec/request_proxy/net_httprequest_spec.rb",
-    "spec/request_proxy/rack_request_spec.rb",
-    "spec/request_proxy/uri_spec.rb",
-    "spec/request_proxy_spec.rb",
-    "spec/signature/base_spec.rb",
-    "spec/signature/simple_spec.rb",
-    "spec/signature_spec.rb",
-    "spec/spec_helper.rb"
-  ]
+  s.homepage = "http://github.com/thinkwell/john-hancock"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.15"
+  s.summary = "Library for signing and verifying url signatures"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
