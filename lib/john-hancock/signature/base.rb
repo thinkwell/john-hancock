@@ -13,12 +13,18 @@ module JohnHancock::Signature
         'valid_timestamp_range' => ((Time.now.to_i-300)..(Time.now.to_i+300))
       }.merge(options)
 
+      # Configure the object
+      options.each do |key, val|
+        self.send("#{key}=", val) if self.respond_to?("#{key}=")
+      end
+
+      read_request_attributes
+
+      # Re-apply all options after reading request attributes
       @options = options.inject({}) do |otherOptions, (key, val)|
         self.respond_to?("#{key}=") ? self.send("#{key}=", val) : otherOptions[key] = val
         otherOptions
       end
-
-      read_request_attributes
     end
 
 

@@ -63,6 +63,15 @@ module JohnHancock
       s.signature_header.should == 'Foo-Bar'
     end
 
+    it "allows setting header names and values via options" do
+      s = Signature::Simple.new(RequestProxy.proxy(@request), {
+        :key => 'mykey',
+        :key_header => 'X-My-Key',
+      })
+      s.key.should == 'mykey'
+      s.key_header.should == 'X-My-Key'
+    end
+
     it "fetches the api key" do
       @signature.key.should == '1234567890'
     end
