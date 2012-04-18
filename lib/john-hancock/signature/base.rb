@@ -49,6 +49,11 @@ module JohnHancock::Signature
       h
     end
 
+    def valid_format?
+      h = id_hash
+      h && h.is_a?(Hash) && !h.values.compact.empty?
+    end
+
     def write_request_attributes
     end
 
@@ -92,7 +97,7 @@ module JohnHancock::Signature
 
 
     def valid?
-      valid_signature? && valid_timestamp?
+      valid_format? && valid_signature? && valid_timestamp?
     end
 
 

@@ -148,6 +148,16 @@ module JohnHancock
       @signature.id_hash.should == {:_id => '1234567890'}
     end
 
+    it "has valid format with correct parameters" do
+      @signature.should be_valid_format
+    end
+
+    it "does not have valid format with incorrect parameters" do
+      request = Mock::Request.new({:method => 'GET', :host => 'api.example.com', :path => '/foo/bar/1.json'})
+      signature = Signature.build(:simple, request, :secret => 'MySecret')
+      signature.should_not be_valid_format
+    end
+
     it "sets the request headers when signing" do
       @signature.secret = 'new-secret'
       @signature.sign!
