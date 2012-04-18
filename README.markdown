@@ -41,6 +41,6 @@ via Gemfile
 
 ## Copyright
 
-Copyright (c) 2011 Brandon Turner. See LICENSE.txt for
+Copyright (c) 2011-2012 Brandon Turner. See LICENSE.txt for
 further details.
 
