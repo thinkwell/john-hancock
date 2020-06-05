@@ -14,5 +14,6 @@ module JohnHancock
   RequestProxy.autoload :NetHTTPRequest, 'john-hancock/request_proxy/net_httprequest'
   RequestProxy.autoload :RackRequest,    'john-hancock/request_proxy/rack_request'
   RequestProxy.autoload :TestRequest,    'john-hancock/request_proxy/test_request'
+  RequestProxy.autoload :ActionDispatchRequest,    'john-hancock/request_proxy/action_dispatch_request'
   RequestProxy.autoload :URI,            'john-hancock/request_proxy/uri'
 end
